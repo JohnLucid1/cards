@@ -2,9 +2,10 @@ package database
 
 import (
 	"backend/models"
+	"log"
+
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-	"log"
 )
 
 var Instance *gorm.DB
@@ -22,5 +23,6 @@ func Connect() {
 
 func Migrate() {
 	Instance.AutoMigrate(&models.User{})
+	Instance.AutoMigrate(&models.Post{})
 	log.Println("Database migration Completed")
 }

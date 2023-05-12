@@ -7,10 +7,17 @@ import (
 
 type User struct {
 	gorm.Model
-	Name     string `json:"name"`
+	Name     string `json:"name" gorm:"not null"`
 	Username string `json:"username" gorm:"unique"`
 	Email    string `json:"email" gorm:"unique"`
-	Password string `json:"password"`
+	Password string `json:"password" gorm:"not null"`
+}
+
+type Post struct {
+	gorm.Model
+	Question  string `json:"question" gorm:"not null"`
+	Answer    string `json:"answer" gorm:"not null"`
+	// TODO: make it a foreign key for user
 }
 
 func (user *User) CheckPassword(password string) error {

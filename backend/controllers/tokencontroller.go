@@ -23,7 +23,7 @@ func GenerateToken(context *gin.Context) {
 		return
 	}
 
-	// chekc if email exists and password is correct
+	//!! chekc if email exists and password is correct
 	record := database.Instance.Where("email = ?", request.Email).First(&user)
 	if record.Error != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"error": record.Error.Error()})
